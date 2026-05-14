@@ -27,4 +27,13 @@ export interface DetallePokemon {
   tipos: {
     nombre: string;
   }[];
+
+  habilidades: {
+    nombre: string;
+  }[];
+  
+  estadisticas: {
+    nombre: string;
+    valor: number;
+  }[];
 }

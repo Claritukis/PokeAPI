@@ -31,24 +31,38 @@ export const ObtenerListaPokemones = async (
 export const ObtenerDetallePokemon = async (nombre: string): Promise<DetallePokemon> => {
 
   // Peticion a la API
-  const respuesta = await fetch(`${API_URL}/pokemon/${nombre}`);
+  const respuesta = await fetch(
+    `${API_URL}/pokemon/${nombre}`
+  );
 
   // Convertir respuesta a json
   const data = await respuesta.json();
 
-  // Retornar la informacion del pokemon
+  // Retornar informacion
   return {
+
     id: data.id,
     nombre: data.name,
     altura: data.height,
     peso: data.weight,
 
-    // data.sprites.front_default es la url de la imagen
+    // Imagen
     imagen: data.sprites.front_default,
 
-    // data.types es un array de tipos y map itera sobre ellos para obtener el nombre del tipo de pokemon
+    // Tipos
     tipos: data.types.map((tipo: any) => ({
       nombre: tipo.type.name
+    })),
+
+    // Habilidades
+    habilidades: data.abilities.map((habilidad: any) => ({
+      nombre: habilidad.ability.name
+    })),
+
+    // Estadisticas
+    estadisticas: data.stats.map((estadistica: any) => ({
+      nombre: estadistica.stat.name,
+      valor: estadistica.base_stat
     }))
   };
 };

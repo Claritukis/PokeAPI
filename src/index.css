@@ -55,7 +55,6 @@
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
@@ -110,35 +109,53 @@ code {
   background: var(--code-bg);
 }
 
+/* DISEÑO PARA LA PAGINA DE POKEMON */
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #ae5dd7;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f3e5f5; 
 }
 
-.contenedor {
-  padding: 20px;
-}
 
 .titulo {
   text-align: center;
-  margin-bottom: 30px;
+  font-size: 3.5rem; 
+  color: #6a1b9a;   
+  margin-bottom: 50px;
+  font-weight: 700;
 }
 
 .contenedor-cartas {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 25px;
+  justify-items: center;
 }
 
 .carta {
-  border: 1px solid gray;
-  border-radius: 10px;
-  padding: 15px;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 20px;
+  width: 180px;
   text-align: center;
-  background-color: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.carta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 5px rgba(0,0,0,0.1);
+}
+
+.carta h2 {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  margin-top: 5px;
+  color: #4a148c;
 }
 
 .carta img {
-  margin-top: 10px;
+  width: 120px;
+  height: 120px;
 }
