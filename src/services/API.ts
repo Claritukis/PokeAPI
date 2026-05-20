@@ -8,14 +8,9 @@ import type {
 const API_URL = 'https://pokeapi.co/api/v2';
 
 // Obtener lista de pokemones
-export const ObtenerListaPokemones = async (
-  limite: number = 30
-): Promise<Pokemon[]> => {
-
+export const ObtenerListaPokemones = async (limite: number = 100): Promise<Pokemon[]> => {
   // fetch hace la peticion a la API
-  const respuesta = await fetch(
-    `${API_URL}/pokemon?limit=${limite}`
-  );
+  const respuesta = await fetch(`${API_URL}/pokemon?limit=${limite}` );
 
   // Convertir respuesta a json
   const data = await respuesta.json();
@@ -31,16 +26,13 @@ export const ObtenerListaPokemones = async (
 export const ObtenerDetallePokemon = async (nombre: string): Promise<DetallePokemon> => {
 
   // Peticion a la API
-  const respuesta = await fetch(
-    `${API_URL}/pokemon/${nombre}`
-  );
+  const respuesta = await fetch(`${API_URL}/pokemon/${nombre}` );
 
   // Convertir respuesta a json
   const data = await respuesta.json();
 
   // Retornar informacion
   return {
-
     id: data.id,
     nombre: data.name,
     altura: data.height,
