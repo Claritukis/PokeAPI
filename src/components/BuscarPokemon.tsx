@@ -5,7 +5,12 @@ type Props = {
 
 function BuscarPokemon({ busqueda, setBusqueda }: Props) {
   return (
-    <input type="text" placeholder="Buscar pokemon..." value={busqueda} onChange={(e) => setBusqueda(e.target.value)}/>
+    <input 
+      type="text" 
+      placeholder="Buscar pokemon..." 
+      value={busqueda} 
+      onChange={(e) => setBusqueda(e.target.value)}
+/>
   );
 }
 

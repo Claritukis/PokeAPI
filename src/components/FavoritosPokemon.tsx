@@ -1,11 +1,21 @@
+import type { pokemon } from '../types/pokemon';
+import CartaPokemon from './CartaPokemon';
+
 type Props = {
-  esFavorito: boolean;
-  cambiarFavorito: () => void;
+  favoritos: string[];
+  todosPokemones: pokemon[];
 };
 
-function FavoritosPokemon({esFavorito, cambiarFavorito}: Props) {
+function FavoritosPokemon({ favoritos, todosPokemones }: Props) {
+  const listaFavoritos = todosPokemones.filter(p => favoritos.includes(p.name));
+
   return (
-    <button onClick={cambiarFavorito}>{esFavorito ? 'Quitar favorito' : 'Agregar favorito'}</button>
+    <div className="grid-container">
+      {listaFavoritos.map((p) => (
+        <CartaPokemon key={p.name} pokemon={p} />
+      ))}
+      {listaFavoritos.length === 0 && <p>No tienes favoritos aún.</p>}
+    </div>
   );
 }
 

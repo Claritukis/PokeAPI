@@ -1,27 +1,23 @@
-import { Link, useNavigate } from 'react-router-dom';
-import type { DetallePokemon } from '../types/pokemon';
+import { useNavigate } from 'react-router-dom';
+import type { pokemon } from '../types/pokemon';
 import UsarFavoritos from '../hooks/UsarFavoritos';
+
 type Props = {
-  pokemon: DetallePokemon;
+  pokemon: pokemon;
 };
 
 function CartaPokemon({ pokemon }: Props) {
   const navigate = useNavigate();
   const { favoritos, cambiarFavorito } = UsarFavoritos();
-  const esFavorito = favoritos.includes(pokemon.nombre);
+  const esFavorito = favoritos.includes(pokemon.name);
 
   return (
-    <div className="carta" onClick={() => navigate(`/pokemon/${pokemon.nombre}`)}>
-      <img src={pokemon.imagen} alt={pokemon.nombre} />
-      <h2>{pokemon.nombre}</h2>
-
-      {/* Boton favorito */}
-      <button onClick={() => cambiarFavorito(pokemon.nombre)}>
+    <div className="carta" onClick={() => navigate(`/pokemon/${pokemon.name}`)}>
+      <img src={pokemon.sprites.front_default} alt={pokemon.name} />
+      <h2>{pokemon.name}</h2>
+      <button onClick={(e) => { e.stopPropagation(); cambiarFavorito(pokemon.name); }}>
         {esFavorito ? '★' : '☆'}
-      </button><br /><br />
-
-      {/* Ir al detalle */}
-      <Link to={`/pokemon/${pokemon.nombre}`}>Ver detalle</Link>
+      </button>
     </div>
   );
 }
